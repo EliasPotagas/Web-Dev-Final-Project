@@ -4,7 +4,6 @@ const session = reactive( {
 });
 
 export function login(firstName: string, lastName: string) {
-    console.log('hi')
 
     session.user = {
         firstName,
