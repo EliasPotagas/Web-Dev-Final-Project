@@ -1,30 +1,41 @@
 <script>
-import Workout from '../components/Workout.vue'
-import { ref } from 'vue';
+import Workout from "../components/Workout.vue";
+import { ref } from "vue";
 export default {
-  setup() {
-    const popupTriggers = ref ({
-      buttonTrigger: false
-    });
-    return Workout
-  }
-
-}
+    setup() {
+        const popupTriggers = ref(false);
+        const handlePopup = () =>{
+          popupTriggers.value = !popupTriggers.value
+          console.log(popupTriggers)
+        }
+        console.log(popupTriggers)
+        return {popupTriggers, handlePopup};
+    },
+    components: { Workout }
+};
 </script>
 
 <template>
   <!--Add popout form  and display users form data when adding to list-->
-  <div class="container">
+  <div class="column">
     <h1 class="title">My Activity</h1>
     <div class="column is-half is-offset-one-quarter">
-    <button class="button is-fullwidth">Add Workout</button>
-    <Workout v-if="popupTriggers.buttonTrigger">
-    </Workout>
-    
+      <button @click = "handlePopup" class="button is-fullwidth">Add Workout</button>
+      <Workout v-if="popupTriggers == true"/>
+      <ul>
+        <Workouts
+          v-for="(item, index) in workout"
+          :key="index"
+          :WorkoutTitle="item.WorkoutTitle"
+          :Location="item.Location"
+          :Duration="item.Duration"
+          :Time="item.Time"
+          :Picture="item.Picture"
+          :WorkoutType="item.WorkoutType"
+        />
+      </ul>
+    </div>
   </div>
-  </div>
-
-
 
   <!--<div class="media">
         <figure class="media-left">
@@ -33,9 +44,7 @@ export default {
             </p>
         </figure>
     </div>-->
-
 </template>
 
 <style>
-
 </style>
