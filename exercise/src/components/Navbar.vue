@@ -63,7 +63,8 @@
       </div>
     </div>
 <!-- Fix login system display for current user their name and whether they have priviledges -->
-    <div class="navbar-end">
+<div v-if = "!loggedIn">
+  <div class="navbar-end">
       <div class="navbar-item">
           <div class="buttons">
           <a class="button is-primary">
@@ -84,6 +85,19 @@
         </div>
       </div>
     </div>
+</div>
+<div v-else>
+  <div class="navbar-end">
+      <div class="navbar-item">
+          <div class="buttons">
+          <a class="button is-primary">
+            <strong>Logout</strong>
+          </a>
+        </div>
+      </div>
+</div>
+</div>
+
     <div class="navbar-burger" id="burger">
         <span></span>
         <span></span>
