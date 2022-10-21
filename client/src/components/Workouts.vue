@@ -1,13 +1,11 @@
 <template>
   <li>
-        {{Title}}
-        {{Type}}
-        {{Date}}
+        {{WorkoutTitle}}
+        {{WorkoutType}}
+        {{Time}}
         {{Location}}
         {{Duration}}
-        {{Picture}}
-        
-        
+        {{Picture}} 
   </li>
 </template>
 
@@ -16,27 +14,23 @@ import { isIntegerKey } from '@vue/shared';
 
 export default {
     props:{
-        Title: '',
+        WorkoutTitle: '',
         Duration: '',
         Location: '',
-        Date: '',
-        Type: '',
+        Time: '',
+        WorkoutType: '',
         Picture: ''
     },
     data(){
         return{
             isEditing: false,
-            newTitle:"",
-            newDate:"",
+            newWorkoutTitle:"",
+            newTime:"",
             newDuration:"",
             newLocation:"",
             newPicture:"",
-            newType:"",
+            newWorkoutType:"",
         }
     }
 }
 </script>
-
-<style>
-
-</style>
