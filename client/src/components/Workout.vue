@@ -1,20 +1,20 @@
 <template>
 <div> 
 
- <form @submit.prevent="addWorkout">
+ <form @submit.prevent="">
         <div class="column is-half is-offset-one-quarter">
         <div class="field">
-            <label class="label">Title: </label>
+            <label class="label">Title </label>
             <div class="control">
-                <input class="input" type="text" placeholder="Name Your Workout" required v-model="Title">
+                <input class="input" type="text" placeholder="Name Your Workout" required v-model="WorkoutTitle">
             </div>
         </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
         <div class="field">
-            <label class="label">Date </label>
+            <label class="label">Time </label>
             <div class="control"> 
-                <input class="input" type="date" v-model="Date">
+                <input class="input" type="date" v-model="Time">
             </div>
         </div>
     </div>
@@ -44,9 +44,9 @@
     </div>
     <div class="column is-offset-one-quarter">
         <div class="field">
-            <label class="label">Type: </label>
+            <label class="label">WorkoutType: </label>
             <div class="control">
-                <select class ="select is-normal" v-model="Type">
+                <select class ="select is-normal" v-model="WorkoutType">
                     <option value="arms"> Arms </option>
                     <option value="legs"> Legs </option>
                 </select>
@@ -55,7 +55,8 @@
     </div>
     
     <div class="column is-half is-offset-one-quarter">
-        <button v-on:click = "addWorkout(Title,Date,Duration,Location,Picture,Type)" class="button is-primary">Save changes</button>
+
+        <button @click = "addWorkout(WorkoutTitle,Time,Duration,Location,Picture,WorkoutType)" class="button is-primary">Save changes</button>
     </div>
     <div class="column is-half is-offset-one-quarter">
         <button class="button is-light">Cancel</button>
@@ -65,20 +66,22 @@
 
 
 
-    <!-- meant to be in activity page and pop up with the workout form-->
 <h1 class="title">My Activity</h1>
        <div class="column is-half is-offset-one-quarter">
        <button class="button is-fullwidth">Add Workout </button>
        <ul>
         <Workouts v-for="(item, index) in workout" :key="index"
-        :Title="item.Title"
+        :WorkoutTitle="item.WorkoutTitle"
         :Location="item.Location"
         :Duration="item.Duration"
-        :Date="item.Date"
+        :Time="item.Time"
         :Picture="item.Picture"
-        :Type="item.Type"
+        :WorkoutType="item.WorkoutType"
         />
-    </ul>
+        </ul>
+        <div v-for="(item, index) in workout" :key="index">
+            {{item}}
+        </div>
      </div> 
 </div>
 
@@ -88,7 +91,7 @@
 import Workouts from '../components/Workouts.vue'
 //import AddWorkout from '../components/AddWorkout.vue'
 
-//TODO : BREAKS WHEN YOU INPUT A DATE BUT THE REST WORKS FINE
+//TODO : BREAKS WHEN YOU INPUT A Time BUT THE REST WORKS FINE
 export default {
     components:{
         Workouts,
@@ -97,31 +100,31 @@ export default {
     data()
     {
         return{
-           workout:[{Title:'',Type:'',Date:'',Duration:'',Location:'',Picture:''}]
+           workout:[{WorkoutTitle:'',WorkoutType:'',Time:'',Duration:'',Location:'',Picture:''}]
         }
     },
     methods:{
-        addWorkout(newTitle,newType,newLocation,newDuration,newPicture,newDate){
+        addWorkout(newWorkoutTitle,newWorkoutType,newLocation,newDuration,newPicture,newTime){
             this.workout.push({
-                Title:newTitle,
-                Date:newDate,
+                WorkoutTitle:newWorkoutTitle,
+                Time:newTime,
                 Location:newLocation,
                 Duration:newDuration,
                 Picture:newPicture,
-                Type:newType
+                WorkoutType:newWorkoutType
             })
         },
-        editWorkout(workouts,newTitle,newDate,newLocation,newDuration,newPicture,newType){
-            workouts.Title = newTitle,
-            workouts.Date = newDate,
+        editWorkout(workouts,newWorkoutTitle,newTime,newLocation,newDuration,newPicture,newWorkoutType){
+            workouts.WorkoutTitle = newWorkoutTitle,
+            workouts.Time = newTime,
             workouts.Location = newLocation,
             workouts.Duration = newDuration,
             workouts.Picture = newPicture,
-            workouts.Type = newType
+            workouts.WorkoutType = newWorkoutType
         },
         deleteWorkout(removeWorkout)
         {
-            this.workout = this.workout.filter( workouts => workouts.Title !== deleteWorkout.Title)
+            this.workout = this.workout.filter( workouts => workouts.WorkoutTitle !== deleteWorkout.WorkoutTitle)
         },
     }
     }
