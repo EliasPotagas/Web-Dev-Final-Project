@@ -66,7 +66,7 @@
 
 
     <!-- meant to be in activity page and pop up with the workout form-->
-    <h1 class="title">My Activity</h1>
+<h1 class="title">My Activity</h1>
        <div class="column is-half is-offset-one-quarter">
        <button class="button is-fullwidth">Add Workout </button>
        <ul>

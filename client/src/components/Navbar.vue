@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import session, { login, logout } from '../views/session'
+
+</script>
 <template>
     <nav class="navbar is-white has-shadow" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -57,13 +61,13 @@
             </div>
         <div class="navbar-dropdown">
             <router-link to ="/Admin" class="navbar-item">
-                Users
+              Users
             </router-link>
         </div>
       </div>
     </div>
 <!-- Fix login system display for current user their name and whether they have priviledges -->
-<div v-if = "!loggedIn">
+<div v-if = "session.user == null">
   <div class="navbar-end">
       <div class="navbar-item">
           <div class="buttons">
@@ -76,7 +80,7 @@
               Login
             </div>
             <div class="navbar-dropdown">
-            <a class="navbar-item" @click="login(Elias,Potagas)">
+            <a class="navbar-item" @click="login('Elias','Potagas')">
                 Elias Potagas
             </a>
             </div>
@@ -90,7 +94,7 @@
   <div class="navbar-end">
       <div class="navbar-item">
           <div class="buttons">
-          <a class="button is-primary">
+          <a class="button is-primary" @click="logout">
             <strong>Logout</strong>
           </a>
         </div>
@@ -107,6 +111,5 @@
 </nav>
 </template>
 
-<script>
-import session, { login, logout } from '../views/session'
-</script>
+
+
