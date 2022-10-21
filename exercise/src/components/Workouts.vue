@@ -1,13 +1,13 @@
 <template>
-  <li>{{Title}}
+  <li>
+        {{Title}}
+        {{Type}}
         {{Date}}
         {{Location}}
-        {{Type}}
         {{Duration}}
         {{Picture}}
-        <button @click="$emit('on-delete')" class="button">Delete</button>
-        <button @click="$emit('on-edit')" class="button">Edit</button>
-
+        
+        
   </li>
 </template>
 
@@ -16,12 +16,12 @@ import { isIntegerKey } from '@vue/shared';
 
 export default {
     props:{
-        Title: String,
-        Date: String,
-        Location: String,
-        Type: String,
+        Title: '',
         Duration: '',
-        Picture:''
+        Location: '',
+        Date: '',
+        Type: '',
+        Picture: ''
     },
     data(){
         return{

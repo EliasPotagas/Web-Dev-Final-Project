@@ -1,5 +1,9 @@
 <template>
 
+  <!--will eventually be a register page-->
+  <div>
+    
+  </div>
 
 </template>
   

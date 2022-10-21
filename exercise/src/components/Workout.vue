@@ -1,35 +1,36 @@
 <template>
 <div> 
- <form>
+
+ <form @submit.prevent="addWorkout">
         <div class="column is-half is-offset-one-quarter">
         <div class="field">
             <label class="label">Title: </label>
             <div class="control">
-                <input class="input" type="text" placeholder="Name Your Workout" required v-model="workout">
+                <input class="input" type="text" placeholder="Name Your Workout" required v-model="Title">
             </div>
         </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
         <div class="field">
-            <label class="label">Date: </label>
+            <label class="label">Date </label>
             <div class="control"> 
-                <input class="input" type="date" required v-model="date">
+                <input class="input" type="date" v-model="Date">
             </div>
         </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
         <div class="field">
-            <label class="label">Location: </label>
+            <label class="label">Location </label>
             <div class="control">
-                <input class="input" type="text" placeholder="Location" required v-model="location">
+                <input class="input" type="text" placeholder="Location" v-model="Location">
             </div>
         </div>
     </div>
     <div class="column is-half is-offset-one-quarter">
         <div class="field">
-            <label class="label">Duration: </label>
+            <label class="label">Duration </label>
             <div class="control">
-                <input class="input" type="text" placeholder="Duration" required v-model="duration">
+                <input class="input" type="text" placeholder="Duration" v-model="Duration">
             </div>
         </div>
     </div>
@@ -37,7 +38,7 @@
         <div class="field">
             <label class="label">Picture</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Picture">
+                <input class="input" type="text" placeholder="Picture" v-model="Picture">
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
         <div class="field">
             <label class="label">Type: </label>
             <div class="control">
-                <select class ="select is-normal" required v-model="type">
+                <select class ="select is-normal" v-model="Type">
                     <option value="arms"> Arms </option>
                     <option value="legs"> Legs </option>
                 </select>
@@ -54,55 +55,59 @@
     </div>
     
     <div class="column is-half is-offset-one-quarter">
-        <button @click = "addworkout" class="button is-primary">Save changes</button>
+        <button v-on:click = "addWorkout(Title,Date,Duration,Location,Picture,Type)" class="button is-primary">Save changes</button>
     </div>
     <div class="column is-half is-offset-one-quarter">
         <button class="button is-light">Cancel</button>
     </div>
+    
  </form>
 
 
- <h1 class="title">My Activity</h1>
-    <div class="column is-half is-offset-one-quarter">
-    
-    <button class="button is-fullwidth">Add Workout</button>
-    <ul class="workout-list">
-        <Workouts 
-        v-for="(workouts,index) in workout" :key="index"
-        :Title="workout.Title"
-        :Duration="workout.Duration"
-        :Location="workout.Location"
-        :Picture="workout.Picture"
-        :Type="workout.Type"
+
+    <!-- meant to be in activity page and pop up with the workout form-->
+    <h1 class="title">My Activity</h1>
+       <div class="column is-half is-offset-one-quarter">
+       <button class="button is-fullwidth">Add Workout </button>
+       <ul>
+        <Workouts v-for="(item, index) in workout" :key="index"
+        :Title="item.Title"
+        :Location="item.Location"
+        :Duration="item.Duration"
+        :Date="item.Date"
+        :Picture="item.Picture"
+        :Type="item.Type"
         />
     </ul>
-    
-  </div>
+     </div> 
 </div>
+
 </template>
 
 <script>
 import Workouts from '../components/Workouts.vue'
+//import AddWorkout from '../components/AddWorkout.vue'
+
+//TODO : BREAKS WHEN YOU INPUT A DATE BUT THE REST WORKS FINE
 export default {
     components:{
-        Workouts
+        Workouts,
+        //AddWorkout
     },
     data()
     {
         return{
-           workout:[
-            {Title:'',Date:'',Location:'',Duration:'',Picture:'',Type:''}
-           ]
+           workout:[{Title:'',Type:'',Date:'',Duration:'',Location:'',Picture:''}]
         }
     },
     methods:{
-        addWorkout(newTitle,newDate,newLocation,newDuration,newPicture,newType){
+        addWorkout(newTitle,newType,newLocation,newDuration,newPicture,newDate){
             this.workout.push({
-                Title:newTitle, 
+                Title:newTitle,
                 Date:newDate,
                 Location:newLocation,
-                Duration: newDuration,
-                Picture,newPicture,
+                Duration:newDuration,
+                Picture:newPicture,
                 Type:newType
             })
         },

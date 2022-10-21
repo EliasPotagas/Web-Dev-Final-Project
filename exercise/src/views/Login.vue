@@ -1,5 +1,6 @@
 <template>
-  <p></p>
+  <!--will eventually be a login page-->
+  <div></div>>
 </template>
 
 <script>

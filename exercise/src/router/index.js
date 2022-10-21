@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Activity from '../views/Activity.vue'
 import Workout from '../components/Workout.vue'
+import Admin from '../views/Admin.vue'
 
 
 const router = createRouter({
@@ -34,7 +35,11 @@ const router = createRouter({
       name: 'workout',
       component: Workout
     },
-   
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin
+    },
   ]
 })
 

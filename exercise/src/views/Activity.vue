@@ -13,6 +13,7 @@ export default {
 </script>
 
 <template>
+  <!--Add popout form  and display users form data when adding to list-->
   <div class="container">
     <h1 class="title">My Activity</h1>
     <div class="column is-half is-offset-one-quarter">

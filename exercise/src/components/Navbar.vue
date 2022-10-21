@@ -56,13 +56,13 @@
               Admin
             </div>
         <div class="navbar-dropdown">
-            <router-link to ="/Users" class="navbar-item">
+            <router-link to ="/Admin" class="navbar-item">
                 Users
             </router-link>
         </div>
       </div>
     </div>
-<!-- Fix login system -->
+<!-- Fix login system display for current user their name and whether they have priviledges -->
     <div class="navbar-end">
       <div class="navbar-item">
           <div class="buttons">
