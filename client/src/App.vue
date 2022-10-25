@@ -1,7 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
-import Workout from './components/Workout.vue'
+import WorkoutForm from './components/WorkoutForm.vue'
+import Workouts from './components/Workouts.vue'
+
+
 </script>
 
 <template>
@@ -19,7 +22,8 @@ export default {
   name: 'App',
   components:{
     Navbar,
-    Workout
+    Workouts,
+    WorkoutForm
   }
 }
 </script>

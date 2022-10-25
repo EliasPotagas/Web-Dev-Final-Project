@@ -1,17 +1,24 @@
 <script>
-import Workout from "../components/Workout.vue";
+import WorkoutForm from "../components/WorkoutForm.vue";
+
 import { ref } from "vue";
 export default {
+  components: { WorkoutForm },
     setup() {
         const popupTriggers = ref(false);
         const handlePopup = () =>{
           popupTriggers.value = !popupTriggers.value
-          console.log(popupTriggers)
         }
-        console.log(popupTriggers)
-        return {popupTriggers, handlePopup};
+
+        const status = ref(true);
+
+        const openModal = () => {
+        status.value = true;
+        console.log(workout)
+    };
+        return {popupTriggers, handlePopup, status};
     },
-    components: { Workout }
+    
 };
 </script>
 
@@ -20,30 +27,10 @@ export default {
   <div class="column">
     <h1 class="title">My Activity</h1>
     <div class="column is-half is-offset-one-quarter">
-      <button @click = "handlePopup" class="button is-fullwidth">Add Workout</button>
-      <Workout v-if="popupTriggers == true"/>
-      <ul>
-        <Workouts
-          v-for="(item, index) in workout"
-          :key="index"
-          :WorkoutTitle="item.WorkoutTitle"
-          :Location="item.Location"
-          :Duration="item.Duration"
-          :Time="item.Time"
-          :Picture="item.Picture"
-          :WorkoutType="item.WorkoutType"
-        />
-      </ul>
+      <button @click = "handlePopup" class="button is-fullwidth" id="addWorkout">Add Workout</button>
+      <WorkoutForm v-if="popupTriggers" /> 
     </div>
   </div>
-
-  <!--<div class="media">
-        <figure class="media-left">
-            <p class="image is-64x64">
-                <img src="">
-            </p>
-        </figure>
-    </div>-->
 </template>
 
 <style>

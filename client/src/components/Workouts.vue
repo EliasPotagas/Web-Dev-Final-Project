@@ -1,12 +1,16 @@
 <template>
-  <li>
+  <!--TODO STYLE THIS EVENTUALLY-->
+  <div>
+    <li>
     {{ WorkoutTitle }}
     {{ WorkoutType }}
     {{ Time }}
-    {{ Location }}
+    {{ Area }}
     {{ Duration }}
     {{ Picture }}
   </li>
+  </div>
+
 </template>
 
 <script>

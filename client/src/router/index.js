@@ -3,7 +3,7 @@ import HomeView from '../views/Homeview.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Activity from '../views/Activity.vue'
-import Workout from '../components/Workout.vue'
+import Workout from '../components/WorkoutForm.vue'
 import Admin from '../views/Admin.vue'
 
 
