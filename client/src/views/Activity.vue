@@ -1,21 +1,16 @@
 <script>
 import WorkoutForm from "../components/WorkoutForm.vue";
+import Workouts from "../components/Workouts.vue";
 
 import { ref } from "vue";
 export default {
-  components: { WorkoutForm },
+  components: { WorkoutForm, Workouts },
     setup() {
         const popupTriggers = ref(false);
         const handlePopup = () =>{
           popupTriggers.value = !popupTriggers.value
         }
-
-        const status = ref(true);
-
-        const openModal = () => {
-        status.value = true;
-        console.log(workout)
-    };
+        const status = ref(true)
         return {popupTriggers, handlePopup, status};
     },
     

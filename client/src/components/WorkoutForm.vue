@@ -1,3 +1,58 @@
+<script>
+import Workouts from "../components/Workouts.vue";
+import { onMounted, onUnmounted, ref } from "vue";
+
+export default {
+  components: {
+    Workouts,
+  },
+  setup() {
+    
+    const workout = ref([
+      {
+        WorkoutTitle: "",
+        Area: "",
+        Duration: "",
+        Time: "",
+        Picture: "",
+        WorkoutType: "",
+        ID: "",
+      },
+    ]);
+
+    const addWorkout = (
+      newWorkoutTitle,
+      newArea,
+      newDuration,
+      newTime,
+      newPicture,
+      newWorkoutType
+    ) => {
+      workout.value.push({
+        WorkoutTitle: newWorkoutTitle,
+        Area: newArea,
+        Duration: newDuration,
+        Time: newTime,
+        Picture: newPicture,
+        WorkoutType: newWorkoutType,
+      });
+    };
+
+    const isEditing = (state) => {
+      
+    };
+
+    const status = ref(true);
+
+    const closeModal = () => {
+      status.value = false;
+      //console.log(workout)
+    };
+
+    return { workout, addWorkout, isEditing, status, closeModal };
+  },
+};
+</script>
 <template>
   <!--TODO ADD REQURED TAGS ON FORM-->
   <div>
@@ -16,7 +71,7 @@
                     v-model="WorkoutTitle"
                   />
                 </div>
-              </div>
+              </div>  
             </div>
             <div class="column is-half is-offset-one-quarter">
               <div class="field">
@@ -103,6 +158,7 @@
           </div>
         </div>
       </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </form>
     <ul>
       <Workouts
@@ -119,66 +175,7 @@
   </div>
 </template>
 
-<script>
-import Workouts from "../components/Workouts.vue";
-import { onMounted, onUnmounted, ref } from "vue";
 
-export default {
-  components: {
-    Workouts,
-  },
-  setup() {
-    
-    const workout = ref([
-      {
-        WorkoutTitle: "",
-        Area: "",
-        Duration: "",
-        Time: "",
-        Picture: "",
-        WorkoutType: "",
-        ID: "",
-      },
-    ]);
-
-    const addWorkout = (
-      newWorkoutTitle,
-      newArea,
-      newDuration,
-      newTime,
-      newPicture,
-      newWorkoutType
-    ) => {
-      workout.value.push({
-        WorkoutTitle: newWorkoutTitle,
-        Area: newArea,
-        Duration: newDuration,
-        Time: newTime,
-        Picture: newPicture,
-        WorkoutType: newWorkoutType,
-      });
-    };
-
-    const isEditing = (state) => {
-      
-    };
-
-    const status = ref(true);
-
-    const closeModal = () => {
-      status.value = false;
-      console.log(workout)
-    };
-
-    
-
-    onMounted(() => console.log('mounted' + workout));
-    onUnmounted(()=> console.log('unmounted' + workout));
-
-    return { workout, addWorkout, isEditing, status, closeModal };
-  },
-};
-</script>
 
 <style>
 </style>

@@ -8,6 +8,7 @@
     {{ Area }}
     {{ Duration }}
     {{ Picture }}
+    
   </li>
   </div>
 
@@ -22,17 +23,10 @@ export default {
     Time: "",
     WorkoutType: "",
     Picture: "",
+
   },
-  data() {
-    return {
-      isEditing: false,
-      newWorkoutTitle: "",
-      newTime: "",
-      newDuration: "",
-      newLocation: "",
-      newPicture: "",
-      newWorkoutType: "",
-    };
-  },
+  setup () {
+    
+  }
 };
 </script>

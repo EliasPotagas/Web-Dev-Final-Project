@@ -16,8 +16,8 @@ export default {
         const hideModal = () =>{
             isModal.value = !isModal.false
         }
-        onMounted(() => console.log('mounted'));
-        onUnmounted(()=> console.log('unmounted'));
+        // onMounted(() => console.log('mounted'));
+        // onUnmounted(()=> console.log('unmounted'));
     }
  };
 </script>
