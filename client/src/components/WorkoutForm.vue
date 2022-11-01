@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import Workouts from "../components/Workouts.vue";
 import { ref } from "vue";
 
@@ -163,18 +163,6 @@ export default {
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </form>
-    <!-- <ul>
-      <Workouts
-        v-for="(item, index) in workout"
-        :key="index"
-        :WorkoutTitle="item.WorkoutTitle"
-        :Area="item.Area"
-        :Duration="item.Duration"
-        :Time="item.Time"
-        :Picture="item.Picture"
-        :WorkoutType="item.WorkoutType"
-      />
-    </ul> -->
   </div>
 </template>
 
