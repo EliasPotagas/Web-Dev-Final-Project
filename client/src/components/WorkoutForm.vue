@@ -1,12 +1,12 @@
 <script>
 import Workouts from "../components/Workouts.vue";
-import { onMounted, onUnmounted, ref } from "vue";
+import { ref } from "vue";
 
 export default {
   components: {
     Workouts,
   },
-  setup() {
+  setup(props,context) {
     
     const workout = ref([
       {
@@ -36,20 +36,23 @@ export default {
         Picture: newPicture,
         WorkoutType: newWorkoutType,
       });
+      closeModal()
     };
 
+    function sendEvent(){
+      context.emit('updateList',workout.value)
+    }
     const isEditing = (state) => {
       
     };
 
+    
     const status = ref(true);
 
     const closeModal = () => {
       status.value = false;
-      //console.log(workout)
     };
-
-    return { workout, addWorkout, isEditing, status, closeModal };
+    return { workout, addWorkout, isEditing, status, closeModal, sendEvent };
   },
 };
 </script>
@@ -142,7 +145,7 @@ export default {
                     Picture,
                     WorkoutType
                   );
-                  closeModal()
+                  sendEvent()
                 "
                 class="button is-primary"
                 id="save"
@@ -160,7 +163,7 @@ export default {
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </form>
-    <ul>
+    <!-- <ul>
       <Workouts
         v-for="(item, index) in workout"
         :key="index"
@@ -171,7 +174,7 @@ export default {
         :Picture="item.Picture"
         :WorkoutType="item.WorkoutType"
       />
-    </ul>
+    </ul> -->
   </div>
 </template>
 

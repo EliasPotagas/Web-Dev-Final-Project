@@ -23,10 +23,8 @@ export default {
     Time: "",
     WorkoutType: "",
     Picture: "",
-
   },
   setup () {
-    
   }
 };
 </script>
