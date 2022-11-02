@@ -1,28 +1,31 @@
 import { reactive } from "vue";
-import type {  User } from "./user";
+import data from '../data/workout.json';
 
-export interface WorkoutList {
-    WorkoutTitle: String;
-    Time: Date;
-    WorkoutPlace: String;
-    Duration: number;
-    WorkoutType: String;
-    user: User;
+
+export interface Workout {
+    WorkoutTitle : String,
+    Time : String,
+    WorkoutPlace: String,
+    Duration : number,
+    WorkoutType :String,
+    Picture : String,
 }
 
-const workout = reactive([] as WorkoutList[]);
+const workout = reactive(data.WorkoutList as Workout[]);
 
-export function addWorkoutToUser(user: User,WorkoutTitle:String,Time:Date,WorkoutPlace:String,Duration:number,WorkoutType:String) {
+export function addWorkoutToUser(WorkoutTitle:String,Time:String,WorkoutPlace:String,Duration:number,WorkoutType:String,Picture:String) {
     workout.push({
         WorkoutTitle,
         Time,
         WorkoutPlace,
         Duration,
         WorkoutType,
-        user,
+        Picture,
     });
 }
 
-
+export function getWorkouts() {
+    return workout;
+}
 
 export default workout;

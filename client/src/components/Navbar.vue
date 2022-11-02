@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import session, { login, logout } from '../scripts/session.js'
-import { getUsers, type User } from "../scripts/user";
-import { reactive, ref } from "vue";
+import { getUsers, User } from "../scripts/user";
+import { reactive } from "vue";
 
 
-const users = reactive(getUsers());
+const users: User[] = reactive(getUsers());
 
-const client = ref('')
-
-console.log(client)
 </script>
 <template>
   <nav
@@ -96,7 +93,7 @@ console.log(client)
                           )
                         "
                       >
-                        {{ user.firstname }} {{ user.lastname }}
+                        {{ user.firstname }} {{ user.lastname }} ID: {{ user.id }}
                       </button></a
                     >
                   </div>

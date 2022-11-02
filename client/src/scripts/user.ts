@@ -1,6 +1,6 @@
 import data from '../data/user.json';
 
-export function getUsers() {
+export function getUsers(): User[] {
     return data.user as User[];
 }
 
@@ -13,8 +13,9 @@ export function deleteuser(id: number) {
 }
 
 export interface User {
-    firstname: String,
-    lastname: String,
+    firstname: string,
+    lastname: string,
     id: number
     isAdmin: boolean
 }
+

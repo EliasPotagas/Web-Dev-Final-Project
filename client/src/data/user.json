@@ -2,9 +2,9 @@
     "user" :
     [
         {
-            "id" : 1,
             "firstname" : "Elias",
             "lastname" : "Potagas",
+            "id" : 1,
             "isAdmin" : true
         },
         {

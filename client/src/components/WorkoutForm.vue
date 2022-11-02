@@ -1,66 +1,38 @@
-<script lang="ts">
-import Workouts from "../components/Workouts.vue";
-import { ref } from "vue";
+<script setup lang="ts">
 
-export default {
-  components: {
-    Workouts,
-  },
-  setup(props,context) {
-    
-    const workout = ref([
-      {
-        WorkoutTitle: "",
-        Area: "",
-        Duration: "",
-        Time: "",
-        Picture: "",
-        WorkoutType: "",
-        ID: "",
-      },
-    ]);
+import {  defineProps, reactive } from "vue";
+import {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
 
-    const addWorkout = (
-      newWorkoutTitle,
-      newArea,
-      newDuration,
-      newTime,
-      newPicture,
-      newWorkoutType
-    ) => {
-      workout.value.push({
-        WorkoutTitle: newWorkoutTitle,
-        Area: newArea,
-        Duration: newDuration,
-        Time: newTime,
-        Picture: newPicture,
-        WorkoutType: newWorkoutType,
-      });
-      closeModal()
-    };
+const { popupTriggers } = defineProps<{
+  popupTriggers: boolean;
+}>();
+const workoutList = getWorkouts();
 
-    function sendEvent(){
-      context.emit('updateList',workout.value)
-    }
-    const isEditing = (state) => {
-      
-    };
+const WorkoutTitle = "";
+const Time= "";
+const Area= "";
+const Duration= 0;
+const Picture= "";
+const WorkoutType= "";
 
-    
-    const status = ref(true);
+function addWorkout(
+  WorkoutTitle: string,
+  Time: string,
+  Area: String,
+  Duration: number,
+  Picture: string,
+  WorkoutType: String
+) 
+{
+  addWorkoutToUser(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType);
+}
 
-    const closeModal = () => {
-      status.value = false;
-    };
-    return { workout, addWorkout, isEditing, status, closeModal, sendEvent };
-  },
-};
 </script>
 <template>
   <!--TODO ADD REQURED TAGS ON FORM-->
   <div>
     <form @submit.prevent="">
-      <div class="modal" :class="{ 'is-active': status }">
+      <div class="modal" :class="{ 'is-active': popupTriggers }">
         <div class="modal-background is-white">
           <div class="modal-content has-background-white py-5 px-5">
             <div class="column is-half is-offset-one-quarter">
@@ -74,7 +46,7 @@ export default {
                     v-model="WorkoutTitle"
                   />
                 </div>
-              </div>  
+              </div>
             </div>
             <div class="column is-half is-offset-one-quarter">
               <div class="field">
@@ -140,12 +112,12 @@ export default {
                   addWorkout(
                     WorkoutTitle,
                     Time,
-                    Duration,
                     Area,
+                    Duration,
                     Picture,
                     WorkoutType
                   );
-                  sendEvent()
+                  popupTriggers = !popupTriggers;
                 "
                 class="button is-primary"
                 id="save"
@@ -154,7 +126,11 @@ export default {
               </button>
             </div>
             <div class="column is-half is-offset-one-quarter">
-              <button class="button is-light" id="cancel" @click="closeModal">
+              <button
+                class="button is-light"
+                id="cancel"
+                @click="popupTriggers = !popupTriggers"
+              >
                 Cancel
               </button>
             </div>
