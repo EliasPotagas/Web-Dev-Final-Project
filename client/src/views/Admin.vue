@@ -84,7 +84,7 @@ export default {
 
     }
 
-    return { users, headers, filter, search, addUser, deleteUser };
+    return { workout, users, headers, filter, search, addUser, deleteUser };
   },
 };
 </script>

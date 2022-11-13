@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import {  defineProps, reactive } from "vue";
-import {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
+import workout, {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
 
 const { popupTriggers } = defineProps<{
   popupTriggers: boolean;
