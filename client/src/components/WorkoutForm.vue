@@ -6,6 +6,7 @@ import {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
 const { popupTriggers } = defineProps<{
   popupTriggers: boolean;
 }>();
+
 const workoutList = getWorkouts();
 
 const WorkoutTitle = "";
@@ -31,118 +32,31 @@ function addWorkout(
 <template>
   <!--TODO ADD REQURED TAGS ON FORM-->
   <div>
-    <form @submit.prevent="">
-      <div class="modal" :class="{ 'is-active': popupTriggers }">
-        <div class="modal-background is-white">
-          <div class="modal-content has-background-white py-5 px-5">
-            <div class="column is-half is-offset-one-quarter">
-              <div class="field">
-                <label class="label">Title </label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Name Your Workout"
-                    v-model="WorkoutTitle"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="column is-half is-offset-one-quarter">
-              <div class="field">
-                <label class="label">Time </label>
-                <div class="control">
-                  <input class="input" type="date" v-model="Time" />
-                </div>
-              </div>
-            </div>
-            <div class="column is-half is-offset-one-quarter">
-              <div class="field">
-                <label class="label">Area </label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Area"
-                    v-model="Area"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="column is-half is-offset-one-quarter">
-              <div class="field">
-                <label class="label">Duration </label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Duration"
-                    v-model="Duration"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="column is-half is-offset-one-quarter">
-              <div class="field">
-                <label class="label">Picture</label>
-                <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Picture"
-                    v-model="Picture"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="column is-offset-one-quarter">
-              <div class="field">
-                <label class="label">WorkoutType: </label>
-                <div class="control">
-                  <select class="select is-normal" v-model="WorkoutType">
-                    <option value="arms">Arms</option>
-                    <option value="legs">Legs</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="column is-half is-offset-one-quarter">
-              <button
-                @click="
-                  addWorkout(
-                    WorkoutTitle,
-                    Time,
-                    Area,
-                    Duration,
-                    Picture,
-                    WorkoutType
-                  );
-                  popupTriggers = !popupTriggers;
-                "
-                class="button is-primary"
-                id="save"
-              >
-                Save changes
-              </button>
-            </div>
-            <div class="column is-half is-offset-one-quarter">
-              <button
-                class="button is-light"
-                id="cancel"
-                @click="popupTriggers = !popupTriggers"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+
+   <div class="card" style="margin-top: 15px;" v-for="(workout, index) in workoutList" :key="index" >  
+      <header class="card-header">
+        <p class="card-header-title" style="margin-left: 40%; marging-right: auto;">
+          {{ workout.WorkoutTitle }}
+        </p>
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          {{workout.WorkoutType}}
         </div>
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
-    </form>
+      <footer class="card-footer">
+        <a href="#" class="card-footer-item">Edit</a>
+        <a href="#" class="card-footer-item">Delete</a>
+      </footer>
+    </div>
+
+    <router-link class="button is-large is-link" style="margin-top: 10px;" to="/newWorkout">Add Workout</router-link>
   </div>
 </template>
-
-
-
 <style>
 </style>

@@ -5,6 +5,7 @@ import Register from '../views/Register.vue'
 import Activity from '../views/Activity.vue'
 import Workout from '../components/WorkoutForm.vue'
 import Admin from '../views/Admin.vue'
+import newWorkout from '../components/NewWorkout.vue'
 
 
 const router = createRouter({
@@ -40,6 +41,11 @@ const router = createRouter({
       name: 'admin',
       component: Admin
     },
+    {
+      path: '/newWorkout',
+      name: 'workoutform',
+      component: newWorkout
+    }
   ]
 })
 
