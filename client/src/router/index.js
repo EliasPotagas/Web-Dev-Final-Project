@@ -37,9 +37,9 @@ const router = createRouter({
       component: Workout
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: Admin
+      path: '/Admin',
+      name: 'Admin',
+      component: Admin,
     },
     {
       path: '/newWorkout',

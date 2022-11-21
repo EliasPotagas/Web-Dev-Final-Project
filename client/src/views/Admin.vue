@@ -1,21 +1,21 @@
 <template>
+
   <div class="column is-half is-offset-one-quarter">
     <div class="input">
       <input type="text" placeholder="Search User" v-model="filter" />
-      <p class="searchedItem"> Searched Term - {{filter}}</p>
+      <p class="searchedItem"> Search for a User {{filter}}</p>
     </div>
     <div class="table-container">
       <table class="table is-bordered is-striped is-narrow is-fullwidth">
         <tr>
-          <th v-for="header in headers" :key="header">
-            {{ header }}
+          <th v-for="(header, index) in headers" :key="index">
+             {{header}} 
           </th>
         </tr>
         <tbody>
-          <tr v-for="user in search" :key="user.id">
-            <td v-for="item in user" :key="item">
-              {{ item }}
-            </td>
+          <tr v-for="(user, index) in Users" :key="index">
+            <td> {{ user.fname }} </td>
+            <td> {{ user.lname }} </td>
           </tr>
         </tbody>
       </table>
@@ -24,68 +24,21 @@
 </template>
 
 <script>
+
 import { computed, ref } from "vue";
+// import user, {getUsers, User } from "../scripts/user";
+
+// const UserList = getUsers();
 
 export default {
-  setup() {
-    const filter = ref("");
-    const users = ref([
-      {
-        picture: "temp",
-        name: "elias",
-        lastname: "pot",
-        id: '1',
-        email: "email",
-        hasPriviledge: "true",
-      },
-      {
-        picture: "temp",
-        name: "bob",
-        lastname: "john",
-        id: '2',
-        email: "email",
-        hasPriviledge: "false",
-      },
-      {
-        picture: "temp",
-        name: "john",
-        lastname: "doe",
-        id: '3',
-        email: "email",
-        hasPriviledge: "false",
-      },
-      {
-        picture: "temp",
-        name: "elk",
-        lastname: "dee",
-        id: '4',
-        email: "email",
-        hasPriviledge: "false",
-      },
-    ]);
-    const headers = [
-      "Profile",
-      "FirstName",
-      "LastName",
-      "ID",
-      "Email",
-      "Priviledge",
-    ];
+    data() {
+      return {
+         headers: ["Profile", "FirstName","LastName", "ID", "Email", "Priviledge"],
+      }
+    }, 
+    mounted() {
 
-    const search = computed(() => {
-      return users.value.filter((user) => user.name.includes(filter.value))
-    })
-
-    const addUser = () => {
-
-    }
-
-    const deleteUser =() => {
-
-    }
-
-    return { workout, users, headers, filter, search, addUser, deleteUser };
-  },
+    }, 
 };
 </script>
 
