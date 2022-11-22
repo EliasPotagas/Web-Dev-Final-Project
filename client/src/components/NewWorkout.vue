@@ -4,6 +4,11 @@ import {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
 
 const workoutList = getWorkouts();
 
+const { popupTriggers } = defineProps<{
+  popupTriggers: boolean;
+}>();
+
+
 const WorkoutTitle = "";
 const Time= "";
 const Area= "";

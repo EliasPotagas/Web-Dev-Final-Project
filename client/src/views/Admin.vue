@@ -23,70 +23,24 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { computed, ref } from "vue";
+import workout, {  deleteuser, getUser, getUsers} from "../scripts/user";
 
-export default {
-  setup() {
-    const filter = ref("");
-    const users = ref([
-      {
-        picture: "temp",
-        name: "elias",
-        lastname: "pot",
-        id: '1',
-        email: "email",
-        hasPriviledge: "true",
-      },
-      {
-        picture: "temp",
-        name: "bob",
-        lastname: "john",
-        id: '2',
-        email: "email",
-        hasPriviledge: "false",
-      },
-      {
-        picture: "temp",
-        name: "john",
-        lastname: "doe",
-        id: '3',
-        email: "email",
-        hasPriviledge: "false",
-      },
-      {
-        picture: "temp",
-        name: "elk",
-        lastname: "dee",
-        id: '4',
-        email: "email",
-        hasPriviledge: "false",
-      },
-    ]);
-    const headers = [
-      "Profile",
-      "FirstName",
-      "LastName",
-      "ID",
-      "Email",
-      "Priviledge",
-    ];
+const workoutList = getUsers();
 
-    const search = computed(() => {
-      return users.value.filter((user) => user.name.includes(filter.value))
-    })
 
-    const addUser = () => {
-
-    }
-
-    const deleteUser =() => {
-
-    }
-
-    return { workout, users, headers, filter, search, addUser, deleteUser };
-  },
-};
+function addWorkout(
+  WorkoutTitle: string,
+  Time: string,
+  Area: String,
+  Duration: number,
+  Picture: string,
+  WorkoutType: String
+) 
+{
+  addUser(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType);
+}
 </script>
 
 <style>
