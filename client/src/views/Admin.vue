@@ -1,21 +1,21 @@
 <template>
+
   <div class="column is-half is-offset-one-quarter">
     <div class="input">
       <input type="text" placeholder="Search User" v-model="filter" />
-      <p class="searchedItem"> Searched Term - {{filter}}</p>
+      <p class="searchedItem"> Search for a User {{filter}}</p>
     </div>
     <div class="table-container">
       <table class="table is-bordered is-striped is-narrow is-fullwidth">
         <tr>
-          <th v-for="header in headers" :key="header">
-            {{ header }}
+          <th v-for="(header, index) in headers" :key="index">
+             {{header}} 
           </th>
         </tr>
         <tbody>
-          <tr v-for="user in search" :key="user.id">
-            <td v-for="item in user" :key="item">
-              {{ item }}
-            </td>
+          <tr v-for="(user, index) in Users" :key="index">
+            <td> {{ user.fname }} </td>
+            <td> {{ user.lname }} </td>
           </tr>
         </tbody>
       </table>

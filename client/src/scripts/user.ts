@@ -20,18 +20,11 @@ export interface User {
     isAdmin: boolean
 }
 
-export function addUsertoTable(WorkoutTitle:String,Time:String,WorkoutPlace:String,Duration:number,WorkoutType:String,Picture:String) {
-    workout.push({
-        WorkoutTitle,
-        Time,
-        WorkoutPlace,
-        Duration,
-        WorkoutType,
-        Picture,
-    });
+const user = reactive(data.user as User[]);
+
+export function addUsertoTable() {
 }
 
-const user = reactive(data.user as User[]);
 
 
 export default user;
