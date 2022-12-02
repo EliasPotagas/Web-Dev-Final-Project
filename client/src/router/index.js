@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Homeview.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Activity from '../views/Activity.vue'
 import Workout from '../components/WorkoutForm.vue'
 import Admin from '../views/Admin.vue'
 import newWorkout from '../components/NewWorkout.vue'
+import AddWorkout from '../components/AddWorkout.vue'
+import Friends from '../views/Friends.vue'
+import UserProfile from '../views/UserProfile.vue'
 
 
 const router = createRouter({
@@ -27,11 +29,6 @@ const router = createRouter({
       component: Register
     },
     {
-      path: '/activity',
-      name: 'activity',
-      component: Activity
-    },
-    {
       path: '/workout',
       name: 'workout',
       component: Workout
@@ -45,7 +42,22 @@ const router = createRouter({
       path: '/newWorkout',
       name: 'workoutform',
       component: newWorkout
-    }
+    },
+    {
+      path: '/CreatePlan',
+      name: 'CreatePlan',
+      component: AddWorkout
+    },
+    {
+      path: '/friends',
+      name: 'friends',
+      component: Friends
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: UserProfile
+    },
   ]
 })
 

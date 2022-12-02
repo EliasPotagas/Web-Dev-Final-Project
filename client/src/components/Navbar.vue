@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import session, { login, logout } from '../scripts/session.js'
+import session, { login, logout } from "../scripts/session.js";
 import { getUsers, User } from "../scripts/user";
 import { reactive } from "vue";
 
-
 const users: User[] = reactive(getUsers());
-
 </script>
 <template>
   <nav
@@ -33,43 +31,28 @@ const users: User[] = reactive(getUsers());
       <div class="navbar-start">
         <router-link to="/Home" class="navbar-item"> Home </router-link>
 
-        <router-link to="/Statistics" class="navbar-item">
-          Statistics
-        </router-link>
-
-        <router-link to="/Friends" class="navbar-item"> Friends </router-link>
-
-        <router-link to="/Activity" class="navbar-item">
-          My Activity
-        </router-link>
-
-        <router-link to="/Blog" class="navbar-item"> Search </router-link>
-
+        <router-link to="/Friends" class="navbar-item" v-if="session.user != null"> Friends </router-link>
         <div class="navbar-item has-dropdown is-hoverable">
-          <router-link to="/Workout" class="navbar-link"> Workout </router-link>
+          <div class="navbar-link" v-if="session.user != null">Workout</div>
           <div class="navbar-dropdown">
-            <router-link to="/ViewWorkouts" class="navbar-item">
+            <router-link to="/Workout" class="navbar-item">
               View Workouts
-            </router-link>
-            <router-link to="/Schedule" class="navbar-item">
-              Schedule
-            </router-link>
-            <router-link to="/Activity" class="navbar-item">
-              Activity
             </router-link>
             <router-link to="/CreatePlan" class="navbar-item">
               Create Plan
             </router-link>
           </div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable">
+        <div
+          v-if="session.user?.admin"
+          class="navbar-item has-dropdown is-hoverable"
+        >
           <div class="navbar-link">Admin</div>
           <div class="navbar-dropdown">
             <router-link to="/Admin" class="navbar-item"> Users </router-link>
           </div>
         </div>
       </div>
-      <!-- Fix login system display for current user their name and whether they have priviledges -->
       <div v-if="session.user == null">
         <div class="navbar-end">
           <div class="navbar-item">
@@ -93,7 +76,8 @@ const users: User[] = reactive(getUsers());
                           )
                         "
                       >
-                        {{ user.firstname }} {{ user.lastname }} ID: {{ user.id }}
+                        {{ user.firstname }} {{ user.lastname }} ID:
+                        {{ user.id }}
                       </button></a
                     >
                   </div>
@@ -106,7 +90,7 @@ const users: User[] = reactive(getUsers());
       <div v-else>
         <div class="navbar-end">
           <div class="navbar-item">
-            Welcome {{ session.user.firstName }} {{ session.user.lastName }}
+            <router-link to="/profile" class="button is-primary is-rounded">Welcome {{ session.user.firstName }} {{ session.user.lastName }}</router-link>
             <div class="buttons">
               <a class="button is-primary" @click="logout">
                 <strong>Logout</strong>

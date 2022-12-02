@@ -2,11 +2,6 @@
 
 import {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
 
-const workoutList = getWorkouts();
-
-const { popupTriggers } = defineProps<{
-  popupTriggers: boolean;
-}>();
 
 
 const WorkoutTitle = "";
@@ -16,14 +11,6 @@ const Duration= 0;
 const Picture= "";
 const WorkoutType= "";
 
-function addWorkout(
-  WorkoutTitle: string,
-  Time: string,
-  Area: String,
-  Duration: number,
-  Picture: string,
-  WorkoutType: String
-) 
 {
   addWorkoutToUser(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType);
 }
@@ -31,12 +18,10 @@ function addWorkout(
 
 </script>
 <template>
-
-<div style="margin-top: 50px;">
+<div class="column is-half is-offset-one-quarter">
+  <div style="margin-top: 50px;">
  <form @submit.prevent="" style="margin-top: 50px;">
       <div style="margin-top: 50px;">
-        <div class="modal-background is-white">
-          <div class="modal-content has-background-white py-5 px-5">
             <div class="column is-half is-offset-one-quarter">
               <div class="field">
                 <label class="label">Title </label>
@@ -109,9 +94,10 @@ function addWorkout(
               </div>
             </div>
             <div class="column is-half is-offset-one-quarter">
-              <button
+              <router-link to="/Workout">
+                <button
                 @click="
-                  addWorkout(
+                  addWorkoutToUser(
                     WorkoutTitle,
                     Time,
                     Area,
@@ -119,28 +105,22 @@ function addWorkout(
                     Picture,
                     WorkoutType
                   );
-                  popupTriggers = !popupTriggers;
                 "
                 class="button is-primary"
                 id="save"
               >
                 Save changes
               </button>
+              </router-link>
             </div>
             <div class="column is-half is-offset-one-quarter">
-              <button
-                class="button is-light"
-                id="cancel"
-                @click="popupTriggers = !popupTriggers"
-              >
-                Cancel
-              </button>
+              <router-link class="button is-large is-link" style="margin-top: 10px;" to="/Workout">Cancel</router-link>
             </div>
           </div>
-        </div>
-      </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </form> 
 </div>
+</div>
+
     
 </template>

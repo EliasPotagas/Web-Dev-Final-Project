@@ -3,7 +3,7 @@ const session = reactive( {
     user: null as User | null,
 });
 
-export function login(firstName: string, lastName: string, id: number, admin:boolean) {
+export function login(firstName: string, lastName: string, id?: number, admin?:boolean) {
 
     session.user = {
         firstName,
@@ -20,7 +20,8 @@ export function logout() {
 export class User {
     public firstName?: string;
     public lastName?: string;
-    public id: number;
-    public admin:boolean
+    public id?: number;
+    public admin?:boolean;
+    
 }
 export default session;

@@ -1,42 +1,18 @@
 <script setup lang="ts">
-
-import {  defineProps, reactive } from "vue";
-import workout, {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
-
-const { popupTriggers } = defineProps<{
-  popupTriggers: boolean;
-}>();
-
+import  {   getWorkouts, deleteWorkout } from "../scripts/workout";
+import session from "../scripts/session";
 const workoutList = getWorkouts();
 
-const WorkoutTitle = "";
-const Time= "";
-const Area= "";
-const Duration= 0;
-const Picture= "";
-const WorkoutType= "";
-
-function addWorkout(
-  WorkoutTitle: string,
-  Time: string,
-  Area: String,
-  Duration: number,
-  Picture: string,
-  WorkoutType: String
-) 
-{
-  addWorkoutToUser(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType);
-}
-
+//TODO FIX DISPLAY OF CARDS
+//ROUTER LINKS 
 </script>
 <template>
-  <!--TODO ADD REQURED TAGS ON FORM-->
   <div>
-
+    <div class="column is-half is-offset-one-quarter" v-if="session.user">
    <div class="card" style="margin-top: 15px;" v-for="(workout, index) in workoutList" :key="index" >  
       <header class="card-header">
         <p class="card-header-title" style="margin-left: 40%; marging-right: auto;">
-          {{ workout.WorkoutTitle }}
+          <router-link to=""> {{ workout.WorkoutTitle }} </router-link>
         </p>
         <button class="card-header-icon" aria-label="more options">
           <span class="icon">
@@ -47,16 +23,18 @@ function addWorkout(
       <div class="card-content">
         <div class="content">
           {{workout.WorkoutType}}
+          {{workout.Time}}
+          {{workout.Duration}}
         </div>
       </div>
       <footer class="card-footer">
         <a href="#" class="card-footer-item">Edit</a>
-        <a href="#" class="card-footer-item">Delete</a>
+        <button class="card-footer-item" @click="deleteWorkout(index)">Delete</button>
       </footer>
     </div>
-
-    <router-link class="button is-large is-link" style="margin-top: 10px;" to="/newWorkout">Add Workout</router-link>
   </div>
+  </div>
+
 </template>
 <style>
 </style>
