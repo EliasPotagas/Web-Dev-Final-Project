@@ -1,9 +1,12 @@
 const data = require('../data/user.json');
 const { connect } = require('./mongo');
 
+COLLECTION_NAME = 'user';
+
+
 async function collection(){
     const client = await connect();
-    return client.db('chopiphy').collection('user');
+    return client.db('FitnessApp').collection('user');
 }
 
 async function getUsers() {
