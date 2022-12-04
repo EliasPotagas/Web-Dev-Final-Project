@@ -1,0 +1,23 @@
+{
+    "user" :
+    [
+        {
+            "firstname" : "Elias",
+            "lastname" : "Potagas",
+            "id" : 1,
+            "isAdmin" : true
+        },
+        {
+            "id" : 2,
+            "firstname" : "John",
+            "lastname" : "Doe",
+            "isAdmin" : false
+        },
+        {
+            "id" : 3,
+            "firstname" : "Bob",
+            "lastname" : "Dill",
+            "isAdmin" : false
+        }
+    ]
+}
