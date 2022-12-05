@@ -5,19 +5,22 @@
             "firstname" : "Elias",
             "lastname" : "Potagas",
             "id" : 1,
-            "isAdmin" : true
+            "isAdmin" : true,
+            "email" :"eliaspot@gmail.com"
         },
         {
             "id" : 2,
             "firstname" : "John",
             "lastname" : "Doe",
-            "isAdmin" : false
+            "isAdmin" : false,
+            "email" :"asd@gmail.com"
         },
         {
             "id" : 3,
             "firstname" : "Bob",
             "lastname" : "Dill",
-            "isAdmin" : false
+            "isAdmin" : false,
+            "email" :"gfdg@gmail.com"
         }
     ]
 }

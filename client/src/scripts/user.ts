@@ -29,7 +29,3 @@ export interface User {
 export interface Friends{
     friend: User[]
 }
-
-
-
-// export default user;

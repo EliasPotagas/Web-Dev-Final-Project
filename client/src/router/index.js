@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Homeview.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Workout from '../components/WorkoutForm.vue'
+import workout from '../components/WorkoutForm.vue'
 import Admin from '../views/Admin.vue'
 import newWorkout from '../components/NewWorkout.vue'
 import AddWorkout from '../components/AddWorkout.vue'
@@ -29,9 +29,9 @@ const router = createRouter({
       component: Register
     },
     {
-      path: '/workout',
-      name: 'workout',
-      component: Workout
+      path: '/workouts',
+      name: 'workouts',
+      component: workout
     },
     {
       path: '/Admin',

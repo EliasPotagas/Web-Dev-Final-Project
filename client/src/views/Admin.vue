@@ -42,7 +42,7 @@
 import { computed, ref } from "vue";
 import session from '../scripts/session.js'
 
-import workout, { deleteUser, getUser, getUsers } from "../scripts/user";
+import { deleteUser, getUser, getUsers } from "../scripts/user";
 
 const Users = getUsers();
 const search = ref("");

@@ -4,17 +4,18 @@
         {
             "firstname" : "Elias",
             "lastname" : "Potagas",
-            "id" : 1,
-            "isAdmin" : true
+            "userid" : 1,
+            "isAdmin" : true,
+            "email" :"eliaspot@gmail.com"
         },
         {
-            "id" : 2,
+            "userid" : 2,
             "firstname" : "John",
             "lastname" : "Doe",
             "isAdmin" : false
         },
         {
-            "id" : 3,
+            "userid" : 3,
             "firstname" : "Bob",
             "lastname" : "Dill",
             "isAdmin" : false

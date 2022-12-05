@@ -2,7 +2,7 @@ const data = require('../data/workout.json');
 const { connect } = require('./mongo');
 const { ObjectId } = require('mongodb');
 
-COLLECTION_NAME = 'workout';
+COLLECTION_NAME = 'workouts';
 
 async function collection(){
     const client = await connect();

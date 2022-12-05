@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import  workout, { getWorkouts, deleteWorkout } from "../scripts/workout";
+import   workout, { getWorkouts, type Workout} from "../scripts/workout";
 import session from "../scripts/session";
+import { ref, reactive } from "vue";
 
+const workoutList = ref([] as Workout[]);
+     getWorkouts().then( x=> workoutList.value = x.workouts);
+
+console .log('workout', workout)
+console.log('getworkouts,',getWorkouts())
+//console.log('this is workout', workoutList.value)
 //TODO FIX DISPLAY OF CARDS
 //ROUTER LINKS 
 </script>
@@ -33,7 +40,10 @@ import session from "../scripts/session";
     </div>
   </div> -->
 
-  <div> {{ workout }}</div>
+  <div> 
+    {{  workoutList }}
+    {{ workout }}
+  </div>
   </div>
 
 </template>

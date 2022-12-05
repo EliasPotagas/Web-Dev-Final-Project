@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import session, { login, logout } from "../scripts/session.js";
-import { getUsers, User } from "../scripts/user";
 import { reactive } from "vue";
 
-const users: User[] = reactive(getUsers());
 </script>
 <template>
   <nav
@@ -35,7 +33,7 @@ const users: User[] = reactive(getUsers());
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link" v-if="session.user != null">Workout</div>
           <div class="navbar-dropdown">
-            <router-link to="/Workout" class="navbar-item">
+            <router-link to="/workouts" class="navbar-item">
               View Workouts
             </router-link>
             <router-link to="/CreatePlan" class="navbar-item">
@@ -61,27 +59,17 @@ const users: User[] = reactive(getUsers());
                 <strong>Sign up</strong>
               </a>
               <a class="button is-light">
-                <div class="navbar-item has-dropdown is-hoverable">
-                  <div class="navbar-link">Login</div>
-                  <div class="navbar-dropdown">
-                    <a class="navbar-item" v-for="user in users" :key="user.id"
-                      ><button
-                        class="button is-normal is-outlined is-rounded"
-                        @click="
-                          login(
-                            user.firstname,
-                            user.lastname,
-                            user.id,
-                            user.isAdmin
-                          )
-                        "
-                      >
-                        {{ user.firstname }} {{ user.lastname }} ID:
-                        {{ user.id }}
-                      </button></a
-                    >
-                  </div>
-                </div>
+                <div class="buttons" v-if="session.user == null">
+        <RouterLink class="button is-light" to="/login">
+            Log in
+        </RouterLink>
+          </div>
+          <div v-else>
+              Welcome {{session.user.firstName}} ({{session.user.email}})
+              (<a @click="logout()">
+                  Log out
+              </a>)
+          </div>
               </a>
             </div>
           </div>

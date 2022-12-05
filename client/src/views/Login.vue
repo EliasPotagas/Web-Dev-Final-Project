@@ -1,14 +1,16 @@
-<!-- <script setup lang="ts">
+<script setup lang="ts">
     import { login } from '../scripts/session';
     import { ref } from 'vue';
     const firstName = ref('');
     const lastName = ref('');
     const password = ref('')
+    const email = ref('')
+
 </script>
 
 <template>
     <div>
-        <form class="box" @submit.prevent="login(firstName,lastName,password)">
+        <form class="box" @submit.prevent="login(firstName,lastName,password,false,email)">
             <div class="field">
                 <label class="label">Name</label>
                 <div class="control">
@@ -20,6 +22,14 @@
                 <label class="label">Last Name</label>
                 <div class="control">
                 <input class="input" type="text" placeholder="Last Name" v-model="lastName">
+                </div>
+            </div>
+
+            
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                <input class="input" type="email" placeholder="e.g. alex@example.com" v-model="email">
                 </div>
             </div>
 
@@ -39,4 +49,4 @@
 
 
 <style scoped>
-</style> -->
+</style>

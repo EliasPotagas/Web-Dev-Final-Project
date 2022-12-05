@@ -29,7 +29,7 @@ export async function api<T>(url: string, data: any = null, method?: string) {
     setError(null);
     try {
         let x = await myFetch<T>(url, data, method);
-        console.log("x =", x)
+        //console.log("x =", x)
         return x;
     } catch (error) {
         setError(error as string);

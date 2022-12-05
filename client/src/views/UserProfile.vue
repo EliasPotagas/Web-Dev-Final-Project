@@ -2,7 +2,7 @@
 <template>
   <div class="column">
     <div class="title">
-        Weclome {{session.user?.firstName}} {{session.user?.lastName}}
+        Weclome FIRST NAME: {{session.user?.firstName}} LASTNAME: {{session.user?.lastName}} EMAIL: {{session.user?.email}}
     </div>
     <div>
         display bnasic info for user

@@ -1,26 +1,25 @@
 <script setup lang="ts">
 
 import { reactive } from "@vue/reactivity";
-import {  addWorkoutToUser, getWorkouts, Workout, pushWorkout} from "../scripts/workout";
+import { getWorkouts, Workout, pushWorkout, addWorkoutToUser} from "../scripts/workout";
 import session from "../scripts/session";
+import { ref } from "vue";
 
-const workout = reactive([] as Workout[]);
+const workout = ref({} as Workout[]);
 
-const WorkoutTitle = "";
-const Time= "";
-const Area= "";
-const Duration= 0;
-const Picture= "";
-const WorkoutType= "";
 
-pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.user?.id);
+async function save()
+{
+  const data = await addWorkoutToUser(workout.value);
+  session.messages.push({ type: "success", text: `Successfully inserted ${data.WorkoutTitle}`})
+}
 
 
 </script>
 <template>
 <div class="column is-half is-offset-one-quarter">
   <div style="margin-top: 50px;">
- <form @submit.prevent="" style="margin-top: 50px;">
+ <form @submit.prevent="save" style="margin-top: 50px;">
       <div style="margin-top: 50px;">
             <div class="column is-half is-offset-one-quarter">
               <div class="field">
@@ -30,7 +29,7 @@ pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.us
                     class="input"
                     type="text"
                     placeholder="Name Your Workout"
-                    v-model="WorkoutTitle"
+                    v-model="workout.WorkoutTitle"
                   />
                 </div>
               </div>
@@ -39,7 +38,7 @@ pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.us
               <div class="field">
                 <label class="label">Time </label>
                 <div class="control">
-                  <input class="input" type="date" v-model="Time" />
+                  <input class="input" type="date" v-model="workout.Time" />
                 </div>
               </div>
             </div>
@@ -51,7 +50,7 @@ pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.us
                     class="input"
                     type="text"
                     placeholder="Area"
-                    v-model="Area"
+                    v-model="workout.Area"
                   />
                 </div>
               </div>
@@ -64,7 +63,7 @@ pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.us
                     class="input"
                     type="text"
                     placeholder="Duration"
-                    v-model="Duration"
+                    v-model="workout.Duration"
                   />
                 </div>
               </div>
@@ -77,7 +76,7 @@ pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.us
                     class="input"
                     type="text"
                     placeholder="Picture"
-                    v-model="Picture"
+                    v-model="workout.Picture"
                   />
                 </div>
               </div>
@@ -86,7 +85,7 @@ pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.us
               <div class="field">
                 <label class="label">WorkoutType: </label>
                 <div class="control">
-                  <select class="select is-normal" v-model="WorkoutType">
+                  <select class="select is-normal" v-model="workout.WorkoutType">
                     <option value="arms">Arms</option>
                     <option value="legs">Legs</option>
                   </select>
@@ -94,10 +93,10 @@ pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.us
               </div>
             </div>
             <div class="column is-half is-offset-one-quarter">
-              <router-link to="/Workout">
+              <router-link to="/workouts">
                 <button
                 @click="
-                  pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.user?.id);
+                  save();
                 "
                 class="button is-primary"
                 id="save"
