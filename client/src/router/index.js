@@ -58,6 +58,11 @@ const router = createRouter({
       name: 'profile',
       component: UserProfile
     },
+    {
+      path: '/workouts/emails',
+      name: 'workouts_by_user',
+      component: workout
+    }
   ]
 })
 

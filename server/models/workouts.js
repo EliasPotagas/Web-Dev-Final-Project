@@ -23,14 +23,15 @@ async function getWorkout(_id) {
 
 //TODO FIX THIS 
 
-const getUserWorkout = async (userId) => {
+async function getUserWorkout(userId) {
     const db = await collection();
     const data = await db.find({ userId }).toArray();
-    return await Promise.all( data
-        .map(async (workout) => ({
-            ...workout, 
-            workout: await getWorkout(workout._id)
-        })));
+    return data
+    // return await Promise.all( data
+    //     .map(async (workout) => ({
+    //         ...workout, 
+    //         workout: await getWorkout(workout._id)
+    //     })));
 };
 
 async function addWorkouts(req, userId) {

@@ -8,7 +8,7 @@ app
         .then(x=> res.status(200).send(x))
         .catch(next);
     })
-    .get('/:id', (req, res, next) => {
+    .get('/ids/:id', (req, res, next) => {
         workouts.getWorkout(req.params.id)
         .then(workout=> {
             if (workout) {
@@ -19,8 +19,7 @@ app
         })
         .catch(next);   
     }) 
-    //need to resolve for specific userid to get list here
-    .get('/:userId', (req, res, next) => {
+    .get('/emails/:userId', (req, res, next) => {
         workouts.getUserWorkout(req.params.userId)
         .then(workout=> {
             if (workout) {
@@ -34,7 +33,7 @@ app
     ;
 
 app
-.post('/:userId', (req, res, next) => {
+.post('/emails/:userId', (req, res, next) => {
     workouts.addWorkouts(req.body, req.params.userId)
     .then(x=> res.status(200).send(x))
     .catch(next);

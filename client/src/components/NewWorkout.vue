@@ -94,7 +94,7 @@ async function save()
               </div>
             </div>
             <div class="column is-half is-offset-one-quarter">
-              <router-link to="/workouts">
+              <router-link to="/workouts/emails">
                 <button
                 @click="
                   save();

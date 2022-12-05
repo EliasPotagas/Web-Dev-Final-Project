@@ -33,7 +33,7 @@ import { reactive } from "vue";
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link" v-if="session.user != null">Workout</div>
           <div class="navbar-dropdown">
-            <router-link to="/workouts" class="navbar-item">
+            <router-link to="/workouts/emails" class="navbar-item">
               View Workouts
             </router-link>
             <router-link to="/CreatePlan" class="navbar-item">
