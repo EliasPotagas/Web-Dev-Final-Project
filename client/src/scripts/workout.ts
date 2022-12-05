@@ -1,6 +1,5 @@
-import { reactive } from "vue";
-import data from '../data/workout.json';
-import { api } from "./session";
+import { reactive, watch } from "vue";
+import session, { api } from "./session";
 
 export interface Workout {
     WorkoutTitle : String,
@@ -9,42 +8,70 @@ export interface Workout {
     Duration : number,
     WorkoutType :String,
     Picture : String,
+    userId : number,
+    _id:  String
 }
 
-const workout = reactive(data.WorkoutList as Workout[]);
+const workout = reactive([] as Workout[]);
 
-export function addWorkoutToUser(WorkoutTitle:String,Time:String,WorkoutPlace:String,Duration:number,WorkoutType:String,Picture:String) {
-    if(WorkoutTitle.length == 0 || Time.length == 0 || WorkoutPlace.length == 0 || Duration == null || WorkoutType.length == 0 )
-    {
-        return;
-    }
-    else{
-        workout.push({
-            WorkoutTitle,
-            Time,
-            WorkoutPlace,
-            Duration,
-            WorkoutType,
-            Picture,
+export function addWorkoutToUser(workout : Workout) {
+        api(`workout/${session.user?.email}`, { workout }).then(() => {
+                session.messages.push({ type: 'success', text: `Updated ${workout.WorkoutTitle}`});
         });
     }
 
-}
-
-export function getWorkouts() {
-    return api<ListEnvelope<Workout>>('workout');
+export async function getWorkouts() {
+    let x = await api<Workout>('workout');
+    console.log("getWorkouts", x)
+    return x;
 }
 
 export function getWorkout(id: number) {
-    return api<Workout>(`workouts/${id}`)
+    return api<Workout>(`workout/${id}`)
 }
 
-export function deleteWorkout(index){
-    workout.splice(index,1)
+export async function deleteWorkout(_id : string) {
+    await api ('workouts/${session.user?.email/${_id}', null, 'DELETE');
+    const i = workout.findIndex(w => w._id === _id);
+    if( i >= 0) {
+        workout.splice(i, 1);
+    }
+    else{
+        console.log("error with deleteWorkout");
+    }
 }
 
+export function load() {
+    if(session.user)
+    {
+        api(`workout/${session.user?.email}`).then((data) => {
+            workout.splice(0, workout.length, ...(data as Workout[]));
+        });
+    }
+    else
+    {
+        console.log("no user");
+    }
+   
+}
+watch(() => session.user, load);
 
-export interface ListEnvelope<T> {
-    workouts: T[]
-  }
+
+export function pushWorkout(WorkoutTitle:String, Time: String, WorkoutPlace: String, Duration: number, WorkoutType: String, Picture: String, userId: number, _id: String) 
+{
+{
+    workout.push({
+        WorkoutTitle : "",
+        Time : "",
+        WorkoutPlace: "",
+        Duration : 0,
+        WorkoutType : "",
+        Picture : "",
+        userId: session.user?.id,
+        _id: ""
+
+    });
+    addWorkoutToUser(workout[workout.length - 1]);
+}
+}
 export default workout;

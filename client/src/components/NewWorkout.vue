@@ -1,8 +1,10 @@
 <script setup lang="ts">
 
-import {  addWorkoutToUser, getWorkouts, Workout} from "../scripts/workout";
+import { reactive } from "@vue/reactivity";
+import {  addWorkoutToUser, getWorkouts, Workout, pushWorkout} from "../scripts/workout";
+import session from "../scripts/session";
 
-
+const workout = reactive([] as Workout[]);
 
 const WorkoutTitle = "";
 const Time= "";
@@ -11,9 +13,7 @@ const Duration= 0;
 const Picture= "";
 const WorkoutType= "";
 
-{
-  addWorkoutToUser(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType);
-}
+pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.user?.id);
 
 
 </script>
@@ -97,14 +97,7 @@ const WorkoutType= "";
               <router-link to="/Workout">
                 <button
                 @click="
-                  addWorkoutToUser(
-                    WorkoutTitle,
-                    Time,
-                    Area,
-                    Duration,
-                    Picture,
-                    WorkoutType
-                  );
+                  pushWorkout(WorkoutTitle, Time, Area, Duration, Picture, WorkoutType, session.user?.id);
                 "
                 class="button is-primary"
                 id="save"

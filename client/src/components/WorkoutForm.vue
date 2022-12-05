@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import  {   getWorkouts, deleteWorkout } from "../scripts/workout";
+import  workout, { getWorkouts, deleteWorkout } from "../scripts/workout";
 import session from "../scripts/session";
-const workoutList = getWorkouts();
 
 //TODO FIX DISPLAY OF CARDS
 //ROUTER LINKS 
 </script>
 <template>
   <div>
-    <div class="column is-half is-offset-one-quarter" v-if="session.user">
+    <!-- <div class="column is-half is-offset-one-quarter" v-if="session.user">
    <div class="card" style="margin-top: 15px;" v-for="(workout, index) in workoutList" :key="index" >  
       <header class="card-header">
         <p class="card-header-title" style="margin-left: 40%; marging-right: auto;">
-          <router-link to=""> {{ workout.WorkoutTitle }} </router-link>
+          <router-link to=""> {{ workout }} </router-link>
         </p>
         <button class="card-header-icon" aria-label="more options">
           <span class="icon">
@@ -22,9 +21,9 @@ const workoutList = getWorkouts();
       </header>
       <div class="card-content">
         <div class="content">
-          {{workout.WorkoutType}}
-          {{workout.Time}}
-          {{workout.Duration}}
+          {{workout}}
+          {{workout}}
+          {{workout}}
         </div>
       </div>
       <footer class="card-footer">
@@ -32,7 +31,9 @@ const workoutList = getWorkouts();
         <button class="card-footer-item" @click="deleteWorkout(index)">Delete</button>
       </footer>
     </div>
-  </div>
+  </div> -->
+
+  <div> {{ workout }}</div>
   </div>
 
 </template>

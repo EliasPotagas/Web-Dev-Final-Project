@@ -21,8 +21,25 @@ async function getUser(id) {
     return data;
 }
 
+async function addUser(req, userId) {
+    const db = await collection();
+    await db.insertOne({
+        FirstName: req.FirstName,
+        LastName: req.LastName,
+        Email: req.Email,
+        userId: userId
+    });
+}
+
+async function deleteUser(id) {
+    const db = await collection();
+    await db.deleteOne({ _id: new ObjectId(id) });
+}
+
 module.exports = {
     collection,
     getUsers,
-    getUser
+    getUser,
+    addUser,
+    deleteUser
 };

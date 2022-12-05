@@ -22,10 +22,9 @@ app
     })
     ;
 
-    //multipel bodies how do i send the data for workouttitle, time, etc. ?
 app
-.post('/', (req, res, next) => {
-    workouts.addWorkouts(req.body)
+.post('/:userId', (req, res, next) => {
+    workouts.addWorkouts(req.body, req.params.userId)
     .then(x=> res.status(200).send(x))
     .catch(next);
 });

@@ -1,36 +1,39 @@
 import { reactive } from "vue";
 import myFetch from "../services/myFetch";
-const session = reactive( {
+const session = reactive({
     user: null as User | null,
     loading: 0,
     error: null as string | null,
     messages: [] as Message[],
 });
 
-export function login(firstName: string, lastName: string, id?: number, admin?:boolean) {
+export function login(firstName: string, lastName: string, id: string, admin?: boolean, email?: string) {
 
     session.user = {
         firstName,
         lastName,
         id,
-        admin
+        admin,
+        email
     };
 }
 
 export function setError(error: string | null) {
     session.error = error;
-    if(error){
-        session.messages.push({ type: 'danger', text: error});
+    if (error) {
+        session.messages.push({ type: 'danger', text: error });
     }
 }
 
-export async function api<T>(url: string, data: any = null, method?: string ){
+export async function api<T>(url: string, data: any = null, method?: string) {
     setError(null);
     try {
-        return await myFetch<T>(url, data, method);
+        let x = await myFetch<T>(url, data, method);
+        console.log("x =", x)
+        return x;
     } catch (error) {
         setError(error as string);
-    }finally{
+    } finally {
         session.loading--;
     }
     return {} as T;
@@ -43,9 +46,10 @@ export function logout() {
 export class User {
     public firstName?: string;
     public lastName?: string;
-    public id?: number;
-    public admin?:boolean;
-    public friends?: number [];
+    public id: any;
+    public admin?: boolean;
+    public friends?: number[];
+    public email?: string;
 }
 
 export interface Message {

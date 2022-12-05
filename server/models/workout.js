@@ -21,15 +21,17 @@ async function getWorkout(id) {
     return data;
 }
 
-async function addWorkouts(req, userId, workoutId) {
+async function addWorkouts(req, userId) {
     const db = await collection();
     await db.insertOne({
-        WorkoutTitle: req,
-        userId: userId,
-        workoutId: workoutId
+        WorkoutTitle: req.WorkoutTitle,
+        Time: req.Time,
+        WorkoutPlace: req.WorkoutPlace,
+        Duration: req.Duration,
+        WorkoutType: req.WorkoutType,
+        Picture: req.Picture,
+        userId: userId
     });
-    
-
 }
 
 async function deleteWorkout(id) {
