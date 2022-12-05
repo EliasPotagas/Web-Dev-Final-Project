@@ -9,7 +9,7 @@ export interface Workout {
     Duration : number,
     WorkoutType :string,
     Picture : string,
-    userId : number
+    userId : string
 }
 export interface ListEnvelope<T> {
     workouts: T[]
@@ -17,8 +17,8 @@ export interface ListEnvelope<T> {
 
 const workoutList = reactive([] as Workout[]);
 
-export async function load() {
-   await api(`workouts/${session.user?.email}`).then((data) => {
+export function load() {
+    api(`workouts/${session.user?.email}`).then((data) => {
     workoutList.splice(0, workoutList.length, ...data as Workout[]);
         console.log('success in loading workoutLists')
     });
@@ -36,9 +36,11 @@ export async function addWorkoutToUser(workout : Workout) {
     }
 }
 
-
 export async function getWorkouts() {  
-    return await api<ListEnvelope<Workout>>('workouts');
+    return await api<Workout>(`workouts/${session.user?.email}`).then((data) => {
+        console.log(data)
+        return data;
+    });
 }
 
 export function getWorkout(_id: string) {
@@ -46,30 +48,12 @@ export function getWorkout(_id: string) {
 }
 
 export function updateWorkout(_id: string, product: Workout) {
-    return api<Workout>(`workouts/${_id}`, workout, 'PATCH');
+    return api<Workout>(`workouts/${_id}`, workoutList, 'PATCH');
 }
 
 
 export function deleteProduct(_id: string) {
     return api<{deletedCount:boolean}>(`workouts/${_id}`,{}, 'DELETE');
-}
-
-export function pushWorkout(WorkoutTitle: string, Time: string, WorkoutPlace: string, Duration: number, WorkoutType: string, Picture: string, userId: number, _id: string) 
-{
-{
-    workout.push({
-        WorkoutTitle : "",
-        Time : "",
-        WorkoutPlace: "",
-        Duration : 0,
-        WorkoutType : "",
-        Picture : "",
-        userId: session.user?.id,
-        _id: ""
-
-    });
-    addWorkoutToUser(workout[workout.length - 1]);
-}
 }
 
 export default workoutList;

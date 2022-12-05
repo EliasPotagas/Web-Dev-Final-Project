@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { reactive } from "@vue/reactivity";
-import { getWorkouts, Workout, pushWorkout, addWorkoutToUser} from "../scripts/workout";
+import { Workout, addWorkoutToUser} from "../scripts/workout";
 import session from "../scripts/session";
 import { ref } from "vue";
 
@@ -10,8 +10,9 @@ const workout = ref({} as Workout[]);
 
 async function save()
 {
+  console.log(workout.value)
   const data = await addWorkoutToUser(workout.value);
-  session.messages.push({ type: "success", text: `Successfully inserted ${data.WorkoutTitle}`})
+  session.messages.push({ type: "success", text: `Successfully inserted ${data}`})
 }
 
 
@@ -19,7 +20,7 @@ async function save()
 <template>
 <div class="column is-half is-offset-one-quarter">
   <div style="margin-top: 50px;">
- <form @submit.prevent="save" style="margin-top: 50px;">
+ <form @submit.prevent="" style="margin-top: 50px;">
       <div style="margin-top: 50px;">
             <div class="column is-half is-offset-one-quarter">
               <div class="field">

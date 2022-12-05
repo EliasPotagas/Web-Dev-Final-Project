@@ -15,11 +15,23 @@ async function getWorkouts() {
     return data;
 }
 
-async function getWorkout(id) {
+async function getWorkout(_id) {
     const db = await collection();
-    const data = await db.findOne({ _id: new ObjectId(id) })
+    const data = await db.findOne({ _id: new ObjectId(_id) })
     return data;
 }
+
+//TODO FIX THIS 
+
+const getUserWorkout = async (userId) => {
+    const db = await collection();
+    const data = await db.find({ userId }).toArray();
+    return await Promise.all( data
+        .map(async (workout) => ({
+            ...workout, 
+            workout: await getWorkout(workout._id)
+        })));
+};
 
 async function addWorkouts(req, userId) {
     const db = await collection();
@@ -39,11 +51,11 @@ async function deleteWorkout(id) {
     await db.deleteOne({ _id: new ObjectId(id) });
 }
 
-
 module.exports = {
     collection,
     getWorkouts,
     getWorkout,
     addWorkouts,
-    deleteWorkout
+    deleteWorkout,
+    getUserWorkout
 };

@@ -9,7 +9,7 @@ app
         .catch(next);
     })
     .get('/:id', (req, res, next) => {
-        workouts.getWorkout(+req.params.id)
+        workouts.getWorkout(req.params.id)
         .then(workout=> {
             if (workout) {
                 res.status(200).send(workout);
@@ -17,8 +17,19 @@ app
                 res.status(404).send('workout not found');
             }            
         })
-        .catch(next);
-        
+        .catch(next);   
+    }) 
+    //need to resolve for specific userid to get list here
+    .get('/:userId', (req, res, next) => {
+        workouts.getUserWorkout(req.params.userId)
+        .then(workout=> {
+            if (workout) {
+                res.status(200).send(workout);
+            } else {
+                res.status(404).send('workout not found');
+            }            
+        })
+        .catch(next);   
     })
     ;
 

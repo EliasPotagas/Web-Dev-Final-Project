@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import   workout, { getWorkouts, type Workout} from "../scripts/workout";
+import   workoutList, { getWorkouts } from "../scripts/workout";
 import session from "../scripts/session";
 import { ref, reactive } from "vue";
 
-const workoutList = ref([] as Workout[]);
-     getWorkouts().then( x=> workoutList.value = x.workouts);
+// const workoutList = ref([] as Workout[]);
+//      getWorkouts().then( x=> workoutList.value = x.workouts);
 
-console .log('workout', workout)
+console.log('workoutList', workoutList)
 console.log('getworkouts,',getWorkouts())
-//console.log('this is workout', workoutList.value)
+// console.log('this is workout', workoutList.value)
 //TODO FIX DISPLAY OF CARDS
 //ROUTER LINKS 
 </script>
@@ -41,8 +41,7 @@ console.log('getworkouts,',getWorkouts())
   </div> -->
 
   <div> 
-    {{  workoutList }}
-    {{ workout }}
+    {{ workoutList }}
   </div>
   </div>
 
