@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import   workoutList, { getWorkouts } from "../scripts/workout";
+import   workoutList, { getWorkouts, deleteWorkout, load } from "../scripts/workout";
 import session from "../scripts/session";
 import { ref, reactive } from "vue";
 
@@ -37,7 +37,7 @@ console.log('getworkouts,',getWorkouts())
       </div>
       <footer class="card-footer">
         <a href="#" class="card-footer-item">Edit</a>
-        <button class="card-footer-item" @click="deleteWorkout(index)">Delete</button>
+        <button class="card-footer-item" @click="deleteWorkout(workout._id).then(data => load())">Delete</button>
       </footer>
     </div>
   </div>

@@ -47,13 +47,14 @@ export function getWorkout(_id: string) {
     return api<Workout>(`workouts/emails/${_id}`)
 }
 
-export function updateWorkout(_id: string, product: Workout) {
+export function updateWorkout(_id: string) {
     return api<Workout>(`workouts/emails/${_id}`, workoutList, 'PATCH');
 }
 
 
-export function deleteProduct(_id: string) {
-    return api<{deletedCount:boolean}>(`workouts/emails/${_id}`,{}, 'DELETE');
+export function deleteWorkout(_id: string) {
+   
+    return api<Workout>(`workouts/id/${_id}`,{}, 'DELETE');
 }
 
 export default workoutList;

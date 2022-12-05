@@ -40,7 +40,7 @@ app
 });
 
 app
-.delete('/:id', (req, res, next) => {
+.delete('/id/:id', (req, res, next) => {
     workouts.deleteWorkout(req.params.id)
     .then(x=> res.status(200).send(x))
     .catch(next);;

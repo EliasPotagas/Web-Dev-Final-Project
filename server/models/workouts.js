@@ -49,7 +49,8 @@ async function addWorkouts(req, userId) {
 
 async function deleteWorkout(id) {
     const db = await collection();
-    await db.deleteOne({ _id: new ObjectId(id) });
+    const result = await db.deleteOne({ _id: new ObjectId(id) });
+    return result;
 }
 
 module.exports = {

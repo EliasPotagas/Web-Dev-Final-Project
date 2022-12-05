@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { reactive } from "@vue/reactivity";
-import { Workout, addWorkoutToUser} from "../scripts/workout";
+import { Workout, addWorkoutToUser, load} from "../scripts/workout";
 import session from "../scripts/session";
 import { ref } from "vue";
 
@@ -97,7 +97,7 @@ async function save()
               <router-link to="/workouts/emails">
                 <button
                 @click="
-                  save();
+                  save().then(data => load());
                 "
                 class="button is-primary"
                 id="save"
