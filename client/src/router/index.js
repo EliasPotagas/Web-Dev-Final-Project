@@ -8,7 +8,7 @@ import newWorkout from '../components/NewWorkout.vue'
 import AddWorkout from '../components/AddWorkout.vue'
 import Friends from '../views/Friends.vue'
 import UserProfile from '../views/UserProfile.vue'
-
+import EditWorkout from '../views/EditWorkout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +62,11 @@ const router = createRouter({
       path: '/workouts/emails',
       name: 'workouts_by_user',
       component: workout
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: EditWorkout
     }
   ]
 })

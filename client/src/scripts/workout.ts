@@ -1,3 +1,4 @@
+import res from "express/lib/response";
 import { reactive, watch } from "vue";
 import session, { api } from "./session";
 
@@ -47,8 +48,11 @@ export function getWorkout(_id: string) {
     return api<Workout>(`workouts/emails/${_id}`)
 }
 
-export function updateWorkout(_id: string) {
-    return api<Workout>(`workouts/emails/${_id}`, workoutList, 'PATCH');
+//update workout
+export async function editWorkout(_id: string, workout : Workout) {
+    return await api<Workout>(`workouts/emails/${_id}`, workout, 'PATCH').then((data) => {
+        console.log(data)
+    });
 }
 
 

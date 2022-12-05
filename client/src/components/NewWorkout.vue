@@ -107,13 +107,11 @@ async function save()
               </router-link>
             </div>
             <div class="column is-half is-offset-one-quarter">
-              <router-link class="button is-large is-link" style="margin-top: 10px;" to="/Workout">Cancel</router-link>
+              <router-link class="button is-large is-link" style="margin-top: 10px;" to="/workouts/emails">Cancel</router-link>
             </div>
           </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </form> 
 </div>
 </div>
-
-    
 </template>

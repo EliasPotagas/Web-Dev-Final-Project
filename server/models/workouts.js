@@ -53,11 +53,29 @@ async function deleteWorkout(id) {
     return result;
 }
 
+async function editWorkout(id, workout) {
+    const db = await collection();
+    delete workout._id;
+    const result = await db.findOneAndUpdate(
+        {
+            _id: new ObjectId(id)
+        },
+        {
+            $set: workout
+        },
+        {
+            returnOriginal: false
+        }
+    )
+    return result;
+}
+
 module.exports = {
     collection,
     getWorkouts,
     getWorkout,
     addWorkouts,
     deleteWorkout,
-    getUserWorkout
+    getUserWorkout,
+    editWorkout
 };
