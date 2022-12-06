@@ -1,0 +1,24 @@
+{
+    "user" :
+    [
+        {
+            "firstname" : "Elias",
+            "lastname" : "Potagas",
+            "userid" : 1,
+            "isAdmin" : true,
+            "email" :"eliaspot@gmail.com"
+        },
+        {
+            "userid" : 2,
+            "firstname" : "John",
+            "lastname" : "Doe",
+            "isAdmin" : false
+        },
+        {
+            "userid" : 3,
+            "firstname" : "Bob",
+            "lastname" : "Dill",
+            "isAdmin" : false
+        }
+    ]
+}

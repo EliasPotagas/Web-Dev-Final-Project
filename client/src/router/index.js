@@ -2,10 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/Homeview.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Activity from '../views/Activity.vue'
-import Workout from '../components/WorkoutForm.vue'
+import workout from '../components/WorkoutForm.vue'
 import Admin from '../views/Admin.vue'
-
+import newWorkout from '../components/NewWorkout.vue'
+import AddWorkout from '../components/AddWorkout.vue'
+import Friends from '../views/Friends.vue'
+import UserProfile from '../views/UserProfile.vue'
+import EditWorkout from '../views/EditWorkout.vue'
+import StatsWorkout from '../views/StatsWorkout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,20 +30,50 @@ const router = createRouter({
       component: Register
     },
     {
-      path: '/activity',
-      name: 'activity',
-      component: Activity
+      path: '/workouts',
+      name: 'workouts',
+      component: workout
     },
     {
-      path: '/workout',
-      name: 'workout',
-      component: Workout
+      path: '/Admin',
+      name: 'Admin',
+      component: Admin,
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: Admin
+      path: '/newWorkout',
+      name: 'workoutform',
+      component: newWorkout
     },
+    {
+      path: '/CreatePlan',
+      name: 'CreatePlan',
+      component: AddWorkout
+    },
+    {
+      path: '/friends',
+      name: 'friends',
+      component: Friends
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: UserProfile
+    },
+    {
+      path: '/workouts/emails',
+      name: 'workouts_by_user',
+      component: workout
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: EditWorkout
+    },
+    {
+      path: '/stats/:id',
+      name: 'stats',
+      component: StatsWorkout
+    }
   ]
 })
 
