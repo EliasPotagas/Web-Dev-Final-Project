@@ -4,7 +4,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import workout from '../components/WorkoutForm.vue'
 import Admin from '../views/Admin.vue'
-import newWorkout from '../components/NewWorkout.vue'
+import NewWorkout from '../components/NewWorkout.vue'
 import AddWorkout from '../components/AddWorkout.vue'
 import Friends from '../views/Friends.vue'
 import UserProfile from '../views/UserProfile.vue'
@@ -41,8 +41,8 @@ const router = createRouter({
     },
     {
       path: '/newWorkout',
-      name: 'workoutform',
-      component: newWorkout
+      name: 'NewWorkout',
+      component: NewWorkout
     },
     {
       path: '/CreatePlan',
