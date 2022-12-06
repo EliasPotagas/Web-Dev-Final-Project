@@ -1,4 +1,3 @@
-import res from "express/lib/response";
 import { reactive, watch } from "vue";
 import session, { api } from "./session";
 
@@ -10,13 +9,16 @@ export interface Workout {
     Duration : number,
     WorkoutType :string,
     Picture : string,
-    userId : string
+    userId : string,
+    Stats?: [{
+        Sets: string,
+        Reps: string
+    }]
 }
-export interface ListEnvelope<T> {
-    workouts: T[]
-  }
 
 const workoutList = reactive([] as Workout[]);
+
+const currentWorkout = reactive({} as Workout);
 
 export function load() {
     api(`workouts/emails/${session.user?.email}`).then((data) => {
@@ -25,7 +27,15 @@ export function load() {
     });
 }
 
+export function loadStats(workoutId : string) {
+    api(`workouts/ids/${workoutId}`).then((data) => {
+        Object.assign(currentWorkout, data);
+        console.log('loading stats', currentWorkout)    
+    });
+}
+
 watch(() => session.user, load);
+
 
 export async function addWorkoutToUser(workout : Workout) {
     await api(`workouts/emails/${session.user?.email}`, workout)
@@ -61,4 +71,35 @@ export function deleteWorkout(_id: string) {
     return api<Workout>(`workouts/id/${_id}`,{}, 'DELETE');
 }
 
+export async function addStatstoWorkout(data : Workout, workoutId : string){
+    await api(`workouts/stats/${workoutId}`, data)
+    workoutList.push({...data});
+}
+
+export async function deleteStats(index)
+{
+    workoutList.splice(index,1)
+}
+
+
+
 export default workoutList;
+
+
+
+
+
+
+
+
+
+
+// Stats?: 
+// [{
+//     Sets: 1,
+//     Reps: 1
+// },
+// {
+//     Sets: 2,
+//     Reps: 2
+// }]

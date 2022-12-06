@@ -27,11 +27,6 @@ async function getUserWorkout(userId) {
     const db = await collection();
     const data = await db.find({ userId }).toArray();
     return data
-    // return await Promise.all( data
-    //     .map(async (workout) => ({
-    //         ...workout, 
-    //         workout: await getWorkout(workout._id)
-    //     })));
 };
 
 async function addWorkouts(req, userId) {
@@ -43,7 +38,8 @@ async function addWorkouts(req, userId) {
         Duration: req.Duration,
         WorkoutType: req.WorkoutType,
         Picture: req.Picture,
-        userId: userId
+        userId: userId,
+        Stats: []
     });
 }
 
@@ -70,6 +66,34 @@ async function editWorkout(id, workout) {
     return result;
 }
 
+async function addStats(req, workoutId)
+{
+    const db = await collection();    
+    db.updateOne(
+        {
+            "_id": new ObjectId(workoutId)
+        },
+        {
+            $push : 
+            {Stats: [req.Sets,req.Reps]}
+        }
+        
+        );
+}
+
+async function deleteStats(index)
+{
+    const db = await collection();
+    const result = await db.deleteOne({ Stats:[index] });
+    return result;
+}
+
+// async function getWorkoutStats(_id) {
+//     const db = await collection();
+//     const data = await db.findOne({ _id: new ObjectId(_id) })
+//     return data;
+// }
+
 module.exports = {
     collection,
     getWorkouts,
@@ -77,5 +101,7 @@ module.exports = {
     addWorkouts,
     deleteWorkout,
     getUserWorkout,
-    editWorkout
+    editWorkout,
+    addStats,
+    deleteStats
 };

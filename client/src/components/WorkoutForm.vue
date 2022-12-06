@@ -18,7 +18,7 @@ console.log('getworkouts,',getWorkouts())
    <div class="card" style="margin-top: 15px;" v-for="(workout, index) in workoutList" :key="index" >  
       <header class="card-header">
         <p class="card-header-title" style="margin-left: 40%; marging-right: auto;">
-          <router-link to=""> {{ workout.WorkoutTitle }} </router-link>
+          <router-link :to="`/stats/${workout._id}`"> {{ workout.WorkoutTitle }} </router-link>
         </p>
         <button class="card-header-icon" aria-label="more options">
           <span class="icon">
