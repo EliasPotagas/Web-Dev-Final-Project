@@ -40,7 +40,7 @@ async function addWorkouts(req, userId) {
         Picture: req.Picture,
         userId: userId,
         Stats: []
-    });
+    });   
 }
 
 async function deleteWorkout(id) {
