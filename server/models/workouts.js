@@ -39,10 +39,20 @@ async function addWorkouts(req, userId) {
         WorkoutType: req.WorkoutType,
         Picture: req.Picture,
         userId: userId,
+        Description: req.Description,
         Stats: []
     });   
 }
 
+async function generateDescription(req){
+    const result  = await fetch("https://api.openai.com/v1/completions", {
+        "model": "text-davinci-003",
+        "prompt": `Create description for "${req}" to be used on an workout site` ,
+        "max_tokens": 45,
+        "temperature": 0.18
+      })
+    return result?.choices[0].text?.trim();
+}
 async function deleteWorkout(id) {
     const db = await collection();
     const result = await db.deleteOne({ _id: new ObjectId(id) });
@@ -103,5 +113,6 @@ module.exports = {
     getUserWorkout,
     editWorkout,
     addStats,
-    deleteStats
+    deleteStats,
+    generateDescription
 };

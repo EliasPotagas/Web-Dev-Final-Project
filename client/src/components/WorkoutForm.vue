@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import   workoutList, { getWorkouts, deleteWorkout, load, editWorkout } from "../scripts/workout";
+import   workoutList, { getWorkouts, deleteWorkout, load } from "../scripts/workout";
 import session from "../scripts/session";
 import { ref, reactive } from "vue";
 

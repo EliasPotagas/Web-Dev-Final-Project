@@ -1,21 +1,37 @@
 <script setup lang="ts">
 import session, { api } from '../scripts/session';
 import { useRoute, useRouter } from "vue-router";
-import { editWorkout, getWorkout, load, type Workout } from '../scripts/workout';
+import { editWorkout, generateDescprition, getWorkout, load, type Workout } from '../scripts/workout';
 import { ref } from 'vue';
+import { createDescription } from '../../features/gpt/gpt'
 
 const route = useRoute();
 const router = useRouter();
 
 const workout = ref({} as Workout);
-const urlId = ref(route.params.id as string)
+const workoutId = ref(route.params.id as string)
 
 
 async function save(workout : Workout){
     console.log('edit working', workout)
     console.log('workoutlist ID', workout._id)
-    const data = await editWorkout(urlId.value, workout).then(data => load());
+    const data = await editWorkout(workoutId.value, workout).then(data => load());
 }
+
+async function getGptDescription() {
+  console.log(workout.value.WorkoutType)
+        var element = document.getElementById('workoutTypeId');
+        if(element)
+        {
+        var html = element.outerHTML;      
+        const generateDesc = await createDescription(html);
+        workout.value.Description = generateDesc;
+        return generateDesc;
+        }
+        else{
+          console.log('element is null')
+        }
+    }
 
 
 </script>
@@ -88,11 +104,22 @@ async function save(workout : Workout){
           <div class="column is-offset-one-quarter">
             <div class="field">
               <label class="label">WorkoutType: </label>
-              <div class="control">
+              <div id="workoutTypeId">
+                <div class="control">
                 <select class="select is-normal" v-model="workout.WorkoutType">
                   <option value="arms">Arms</option>
                   <option value="legs">Legs</option>
                 </select>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-offset-one-quarter">
+            <div class="field">
+              <label class="label">Description: </label>
+              <button class = "button is-warning is-small" @click.prevent="generateDescprition(workoutId, workout.WorkoutType).then(data => getGptDescription())"> Generate </button>
+              <div class="control">
+                <textarea class="textarea" placeholder="Full description of workout type" v-model="workout.Description"></textarea>
               </div>
             </div>
           </div>

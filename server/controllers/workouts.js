@@ -61,6 +61,10 @@ app
     workouts.editWorkout(req.params.id, req.body)
     .then(x=> res.status(200).send(x))
     .catch(next);
+})
+.patch('/edit/:id', (req, res, next) => {
+    workouts.generateDescription(req.body)
+    .then(x=> res.status(200).send(x))
+    .catch(next);
 });
-
 module.exports = app;

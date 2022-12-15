@@ -1,6 +1,6 @@
 export const API_ROOT = import.meta.env.VITE_API_ROOT
 
-export default async function myFetch<T>(url: string, data: any = null, method?: string ): Promise<T> {
+export default async function myFetch<T>(url: string, data: any = null, method?: string, headers?: HeadersInit ): Promise<T> {
     console.log("in myfetch")
     const options: RequestInit = {
         method: method ?? (data ? 'POST' : 'GET'),

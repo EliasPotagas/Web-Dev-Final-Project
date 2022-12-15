@@ -10,6 +10,7 @@ export interface Workout {
     WorkoutType :string,
     Picture : string,
     userId : string,
+    Description?: string,
     Stats?: [{
         Sets: string,
         Reps: string
@@ -26,7 +27,6 @@ export function load() {
         console.log('success in loading workoutLists')
     });
 }
-
 export function loadStats(workoutId : string) {
     api(`workouts/ids/${workoutId}`).then((data) => {
         Object.assign(currentWorkout, data);
@@ -65,7 +65,12 @@ export async function editWorkout(_id: string, workout : Workout) {
     });
 }
 
-
+export async function generateDescprition(_id: string, workout : Workout)
+{
+    return await api<Workout>(`workouts/edit/${_id}`, workout, 'PATCH').then((data) => {
+        console.log(data)
+    });
+}
 export function deleteWorkout(_id: string) {
    
     return api<Workout>(`workouts/id/${_id}`,{}, 'DELETE');
